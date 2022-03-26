@@ -4,9 +4,10 @@ module.exports = {
   lintOnSave: false,
   //配置代理跨域
   devServer: {
+    port:9090,
     proxy: {
-      "/api": {
-        target: "http://localhost:8080/bzxx/",
+      "/bzxx": {
+        target: "http://localhost:8080/",
       },
     },
   },

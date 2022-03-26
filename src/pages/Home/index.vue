@@ -1,25 +1,52 @@
 <template>
   <div class="content">
+    <div class="carousel">
+      <el-carousel height="250px">
+        <el-carousel-item v-for="item in images" :key="item.url">
+          <img :src="item.url" alt="无图片"/>          
+        </el-carousel-item>
+      </el-carousel>
+    </div>
     <h1 class="title">企业标准排名</h1>
-    省市
-    <el-cascader
-      placeholder="请选择"
-      clearable
-      class="selector"
-      v-model="pcValue"
-      :options="pcOptions"
-      @change="handleChange"
-    ></el-cascader>
-    企业分类
-    <el-select class="selector" clearable v-model="categoryValue" placeholder="请选择">
-      <el-option
-        v-for="item in category"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
+    <div class="content-selector">
+      <span class="pc">省市</span>
+      <el-cascader
+        placeholder="请选择"
+        clearable
+        class="selector"
+        v-model="pcValue"
+        :options="pcOptions"
+        @change="pcChange"
+      ></el-cascader>
+      <span>企业分类</span>
+      <el-select
+        class="selector"
+        clearable
+        v-model="searchParams.categoryValue"
+        placeholder="请选择"
       >
-      </el-option>
-    </el-select>
+        <el-option
+          v-for="item in category"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+      <span>企业名称关键字</span>
+      <el-input
+        class="input"
+        size="large"
+        v-model="searchParams.keyword"
+        placeholder="请输入"
+      >
+        <el-button
+          slot="append"
+          icon="el-icon-search"
+          @click="search"
+        ></el-button>
+      </el-input>
+    </div>
     <el-table :data="standardRankInfo" stripe border style="width: 100%">
       <el-table-column
         prop="enterpriseName"
@@ -65,6 +92,18 @@
       >
       </el-table-column>
     </el-table>
+    <div class="clearfix">
+      <el-pagination
+        class="pagination"
+        background
+        layout="prev, pager, next"
+        :total="parseInt(total)"
+        :page-size="pageSize"
+        :current-page="parseInt(searchParams.targetPage)"
+        @current-change="pageChange"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -74,35 +113,22 @@ import pcObj from "@/assets/pc.json";
 export default {
   name: "Home",
   methods: {},
-  beforeMount() {
-    this.$store.dispatch("getStandardRank");
-  },
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
+      images: [
+        { url: require("@/assets/images/banner1.png") },
+        { url: require("@/assets/images/banner2.png") },
       ],
+      searchParams: {
+        keyword: "",
+        province: "",
+        city: "",
+        categoryValue: "",
+        targetPage: 1,
+        //size: 15  每页条数,后端写死
+      },
+      pageSize: 15,
       pcValue: [],
-      categoryValue: '',
       pcOptions: pcObj,
       category: [
         { value: "isListed", label: "上市企业" },
@@ -111,18 +137,63 @@ export default {
       ],
     };
   },
+  beforeMount() {
+    Object.assign(this.searchParams, this.$route.query);
+  },
   mounted() {
-    console.log(pcObj);
+    this.getData();
   },
 
   methods: {
-    handleChange() {},
+    getData() {
+      console.log(this.searchParams);
+      this.$store.dispatch("getStandardRank", this.searchParams);
+    },
+    pcChange(param) {
+      //省市改变
+    },
+    pageChange(currentPage) {
+      //页码改变
+      this.searchParams.targetPage = currentPage;
+      //改变路由参数targetPage并拉取数据
+      this.$router.push({ name: "home", query: this.searchParams });
+    },
+    search() {
+      //改变路由参数并拉取数据
+      this.searchParams.targetPage = 1; //搜索新数据一律跳转第一页
+      this.$router.push({ name: "home", query: this.searchParams });
+    },
   },
   computed: {
     ...mapState({
       standardRankMsg: (state) => state.home.standardRankMsg,
     }),
     ...mapGetters(["standardRankInfo"]),
+    total() {
+      return this.standardRankMsg.totalRecordsNum;
+    },
+  },
+  watch: {
+    //监听路由
+    $route(newValue, oldValue) {
+      //  if(this.$route.query.targetPage){
+      //    this.$route.query.targetPage = parseInt(this.$route.query.targetPage)
+      //  }
+      this.searchParams = {
+        keyword: "",
+        province: "",
+        city: "",
+        categoryValue: "",
+        targetPage: 1,
+        // size: 15
+      };
+      Object.assign(this.searchParams, this.$route.query);
+      this.getData();
+    },
+    pcValue(newValue) {
+      this.searchParams.province = newValue[0];
+      this.searchParams.city = newValue[1];
+    },
   },
 };
 </script>
@@ -133,9 +204,28 @@ export default {
   font-size: 14px;
 }
 .selector {
-  margin: 10px 10px;
+  margin: 10px 20px;
 }
 .title {
   text-align: center;
+}
+.input {
+  width: 30%;
+  margin: 10px 20px;
+}
+.content-selector {
+  margin-left: 5%;
+}
+.pagination {
+  float: right;
+  margin-top: 20px;
+}
+.carousel {
+    height: auto;
+    width: 1150px;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 25px;
 }
 </style>

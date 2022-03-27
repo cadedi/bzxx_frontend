@@ -5,3 +5,7 @@ export const reqStandardRank = (params) => requests({
   method:'GET',
   params
 })
+export const reqIcsCategory = () => requests({
+  url:`/ics-category`,
+  method:'GET'
+})

@@ -146,7 +146,6 @@ export default {
 
   methods: {
     getData() {
-      console.log(this.searchParams);
       this.$store.dispatch("getStandardRank", this.searchParams);
     },
     pcChange(param) {

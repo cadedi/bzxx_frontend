@@ -1,15 +1,15 @@
 <template>
-  <div class="clearFix">
+  <!-- <div class="clearFix"> -->
     <div class="ics">
       <el-table :data="localIcs" border style="float: left" :header-cell-style="{background: 'rgb(21, 145, 229)',color: '#fff','font-size':'16px'}">
-        <el-table-column prop="name" label="国际标准分类号（ICS）" width="280">
+        <el-table-column label="国际标准分类号（ICS）" width="280">
           <template slot-scope="scope">
             <span class="column">{{ scope.row.name }}</span>
           </template>
         </el-table-column>
       </el-table>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>

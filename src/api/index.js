@@ -9,3 +9,8 @@ export const reqIcsCategory = () => requests({
   url:`/ics-category`,
   method:'GET'
 })
+export const reqNationalStandard = (params) => requests({
+  url:`/national-standard`,
+  method:'GET',
+  params
+})

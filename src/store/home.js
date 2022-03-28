@@ -3,7 +3,7 @@ const state = {
   standardRankMsg:{}
 };
 const actions = {
-  async getStandardRank({commit},params={targetPage:3}){
+  async getStandardRank({commit},params={targetPage:1}){
     let result = await reqStandardRank(params);
     if(result.status == 200){
       commit("GETSTANDARDRANK",result.data)

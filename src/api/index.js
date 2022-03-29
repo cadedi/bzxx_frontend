@@ -14,3 +14,12 @@ export const reqNationalStandard = (params) => requests({
   method:'GET',
   params
 })
+export const reqIndustryArea = () => requests({
+  url:`/industry-area`,
+  method:'GET'
+})
+export const reqIndustryStandard = (params) => requests({
+  url:`/industry-standard`,
+  method:'GET',
+  params
+})

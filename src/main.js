@@ -7,7 +7,7 @@ Vue.config.productionTip = false
 
 import {Table,TableColumn,Cascader,Select,Option,
         Input,Button,Pagination,Carousel,CarouselItem,
-        Radio,RadioGroup,RadioButton} from 'element-ui';
+        Radio,RadioGroup,RadioButton,Icon} from 'element-ui';
 Vue.component(Table.name, Table);
 Vue.component(TableColumn.name, TableColumn);
 Vue.component(Cascader.name, Cascader);
@@ -21,14 +21,13 @@ Vue.component(CarouselItem.name,CarouselItem);
 Vue.component(Radio.name,Radio);
 Vue.component(RadioGroup.name,RadioGroup);
 Vue.component(RadioButton.name,RadioButton);
+Vue.component(Icon.name,Icon);
 
 
 
 
 
-//引入swiper样式
-import "swiper/css/swiper.css";
-
+import 'element-ui/lib/theme-chalk/index.css';
 
 new Vue({
   render: h => h(App),

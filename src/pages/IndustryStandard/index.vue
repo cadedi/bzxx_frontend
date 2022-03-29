@@ -20,9 +20,10 @@
           ></el-button>
         </el-input>
       </div>
-      <div class="radio-selector it-selector">
-        <span class="label">行业领域:</span>
-        <el-radio-group v-model="searchParams.targetIndustryType" size="medium">
+      <div class="radio-selector it-selector clearFix">
+        
+        <el-radio-group class="it-group" v-model="searchParams.targetIndustryType" size="large">
+          <span class="label it-label">行业领域:</span>
           <el-radio-button label="全部">全部</el-radio-button>
           <el-radio-button
             v-for="item of industryArea.slice(0, 7)"
@@ -264,9 +265,18 @@ export default {
 .expand-icon {
   margin-left: 50px;
 }
-
+/* .hide-selector {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+} */
 /* vue深度穿透器 */
 .it-selector >>> .el-radio-button__inner {
   border: none !important;
+}
+.it-label {
+  position: relative;
+  top: 6px;
 }
 </style>

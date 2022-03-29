@@ -264,16 +264,9 @@ export default {
 .expand-icon {
   margin-left: 50px;
 }
-.hide-selector {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  /* border-style: none !important; */
-  /* border: 0px solid white; */
-}
+
 /* vue深度穿透器 */
 .it-selector >>> .el-radio-button__inner {
-  border: none;
+  border: none !important;
 }
 </style>

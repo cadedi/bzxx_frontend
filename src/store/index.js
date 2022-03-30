@@ -6,12 +6,13 @@ import home from "./home";
 import nationalStandard from "./nationalStandard";
 import industryStandard from "./industryStandard";
 import groupStandard from "./groupStandard";
+import enterpriseStandard from "./enterpriseStandard"
 export default new Vuex.Store({
-  //模块：把小仓库进行合并变为大仓库
   modules: {
     home,
     nationalStandard,
     industryStandard,
-    groupStandard
+    groupStandard,
+    enterpriseStandard
   },
 });

@@ -23,3 +23,14 @@ export const reqIndustryStandard = (params) => requests({
   method:'GET',
   params
 })
+export const reqGroupStandard = (params) => requests({
+  url:`/group-standard`,
+  method:'GET',
+  params
+})
+
+export const reqEnterpriseStandard = (params) => requests({
+  url:`enterprise-standard`,
+  method:'GET',
+  params
+})

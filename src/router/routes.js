@@ -1,6 +1,7 @@
 import Home from '@/pages/Home'
 import NationalStandard from '@/pages/NationalStandard'
 import IndustryStandard from '@/pages/IndustryStandard'
+import GroupStandard from '@/pages/GroupStandard'
 export default [
   {
     name: 'home',
@@ -16,5 +17,10 @@ export default [
     name: 'industryStandard',
     path:'/industryStandard',
     component: IndustryStandard
+  },
+  {
+    name: 'groupStandard',
+    path: '/groupStandard',
+    component:GroupStandard
   }
 ]

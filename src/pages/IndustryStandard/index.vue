@@ -30,9 +30,9 @@
             :key="item.id"
             :label="item.val"
             >{{ item.name }}</el-radio-button>
-          <span class="iconfont icon-xiangxiajiantou expand-icon"></span>
+          <span @click="isExpand=!isExpand" class="iconfont icon-xiangxiajiantou expand-icon"></span>
           <br />
-          <div class="hide-selector">
+          <div class="hide-selector" v-show="isExpand">
             <el-radio-button
               v-for="item of industryArea.slice(7)"
               :key="item.id"
@@ -138,6 +138,7 @@ export default {
         targetPage: 1,
       },
       pageSize: 15,
+      isExpand: false
     };
   },
 

@@ -34,3 +34,15 @@ export const reqEnterpriseStandard = (params) => requests({
   method:'GET',
   params
 })
+
+export const reqUserExist = (params) => requests({
+  url:`exist-user`,
+  method:'GET',
+  params
+})
+
+export const reqRegisterUser = (data) => requests({
+  url:`user`,
+  method:'POST',
+  data
+})

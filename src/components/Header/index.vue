@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" v-show="show">
     <div class="nav_box">
       <!-- logo -->
       <div class="logo">
@@ -54,12 +54,20 @@ export default {
   name: "Header",
 
   data() {
-    return {};
+    return {
+      
+    };
   },
 
-  mounted() {},
+  mounted() {
+  },
 
   methods: {},
+  computed:{
+    show(){
+      return this.$route.path!='/login';
+    }
+  }
 };
 </script>
 

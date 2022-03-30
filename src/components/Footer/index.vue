@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" v-show="show">
     <div class="footer_box">
       <!-- 底部导航 -->
       <div class="footerNav">
@@ -41,9 +41,16 @@ export default {
     return {};
   },
 
-  mounted() {},
+  mounted() {
+
+  },
 
   methods: {},
+  computed:{
+    show(){
+      return this.$route.path!='/login';
+    }
+  }
 };
 </script>
 

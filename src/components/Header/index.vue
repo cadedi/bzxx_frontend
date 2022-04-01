@@ -11,38 +11,32 @@
       <div class="nav">
         <div class="nav_class">
           <ul>
-            <li class="nav_select">
-              <a href="/" one-link-mark="yes">首页</a>
+            <li :class="{nav_select:isCurrentItem('/')}">
+              <!-- <a href="/" one-link-mark="yes">首页</a> -->
+              <router-link to="/">首页</router-link>
             </li>
-            <li>
-              <a href="/standardMap" one-link-mark="yes">标准地图</a>
+            <li :class="{nav_select:isCurrentItem('/nationalStandard')}">
+              <!-- <a href="/nationalStandard" one-link-mark="yes">国家标准</a> -->
+              <router-link to="/nationalStandard">国家标准</router-link>
             </li>
-            <li>
-              <a href="/nationalStandard" one-link-mark="yes">国家标准</a>
+            <li :class="{nav_select:isCurrentItem('/industryStandard')}">
+              <!-- <a href="/industryStandard" one-link-mark="yes">行业标准</a> -->
+              <router-link to="/industryStandard">行业标准</router-link>
             </li>
-            <li>
-              <a href="/industryStandard" one-link-mark="yes">行业标准</a>
+            <li :class="{nav_select:isCurrentItem('/groupStandard')}">
+              <!-- <a href="/groupStandard" one-link-mark="yes">团体标准</a> -->
+              <router-link to="/groupStandard">团体标准</router-link>
             </li>
-            <li>
-              <a href="/groupStandard" one-link-mark="yes">团体标准</a>
-            </li>
-            <li>
-              <a href="/enterpriseStandard" one-link-mark="yes">企业标准</a>
-            </li>
-            <li>
-              <a href="/iso" one-link-mark="yes">国际标准</a>
-            </li>
-            <li>
-              <a href="/standardPolicy" one-link-mark="yes">标准政策</a>
-            </li>
-            <li>
-              <a href="/demonstration" one-link-mark="yes">示范试点</a>
+            <li :class="{nav_select:isCurrentItem('/enterpriseStandard')}">
+              <!-- <a href="/enterpriseStandard" one-link-mark="yes">企业标准</a> -->
+              <router-link to="/enterpriseStandard">企业标准</router-link>
             </li>
           </ul>
         </div>
         <!-- 用户登录 -->
         <div class="personal">
-          <a href="/login" one-link-mark="yes">用户登录</a>
+          <!-- <a href="/login" one-link-mark="yes">用户登录</a> -->
+          <router-link to="/login">用户登录</router-link>
         </div>
       </div>
     </div>
@@ -62,7 +56,11 @@ export default {
   mounted() {
   },
 
-  methods: {},
+  methods: {
+    isCurrentItem(itemName){
+      return itemName == this.$route.path
+    }
+  },
   computed:{
     show(){
       return this.$route.path!='/login';

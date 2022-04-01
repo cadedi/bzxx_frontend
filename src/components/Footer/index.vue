@@ -5,19 +5,16 @@
       <div class="footerNav">
         <ul>
           <li class="nav_select">
-            <a href="/" one-link-mark="yes">国家标准</a>
+            <a href="/#/" one-link-mark="yes">国家标准</a>
           </li>
           <li>
-            <a href="/industryStandard" one-link-mark="yes">行业标准</a>
+            <a href="/#/industryStandard" one-link-mark="yes">行业标准</a>
           </li>
           <li>
-            <a href="/groupStandard" one-link-mark="yes">团体标准</a>
+            <a href="/#/groupStandard" one-link-mark="yes">团体标准</a>
           </li>
           <li>
-            <a href="/enterpriseStandard" one-link-mark="yes">企业标准</a>
-          </li>
-          <li>
-            <a href="/iso" one-link-mark="yes">国际标准</a>
+            <a href="/#/enterpriseStandard" one-link-mark="yes">企业标准</a>
           </li>
         </ul>
       </div>

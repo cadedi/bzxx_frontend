@@ -41,7 +41,7 @@
             </el-form-item>
           </el-form>
           <div class="login-btn">
-            <el-button type="primary">登 录</el-button>
+            <el-button type="primary" @click="login">登 录</el-button>
           </div>
           <div class="to-register">
             <router-link to="/register" class="register-a">注册</router-link>
@@ -66,7 +66,11 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    login(){
+      
+    }
+  },
 };
 </script>
 

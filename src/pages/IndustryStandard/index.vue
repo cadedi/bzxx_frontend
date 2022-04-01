@@ -134,7 +134,7 @@ export default {
         keyword: "",
         targetStatus: "全部",
         releaseDateLimit: "0",
-        targetIndustryType: "",
+        targetIndustryType: "全部",
         targetPage: 1,
       },
       pageSize: 15,
@@ -200,7 +200,7 @@ export default {
         keyword: "",
         targetStatus: "全部",
         releaseDateLimit: "0",
-        targetIndustryType: "",
+        targetIndustryType: "全部",
         targetPage: 1,
       }),
         Object.assign(this.searchParams, this.$route.query);

@@ -2,7 +2,8 @@
 import axios from "axios";
 let requests = axios.create({
   //基础路径
-  baseURL: "/bzxx",
+  // baseURL: "/bzxx",
+  baseURL: "http://localhost:8080/bzxx",
   //请求不能超过5S
   timeout: 5000,
 });

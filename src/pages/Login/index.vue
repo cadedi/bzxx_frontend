@@ -11,20 +11,41 @@
         <div class="logInfo">
           <h1>欢迎登陆</h1>
           <h4>请使用本人账号密码登陆!</h4>
-          <form name="form">
-            <input placeholder="请输入账号" name="userName" type="text" />
-            <input placeholder="请输入密码" name="password" type="password" />
-            <div class="remember">
-              <input type="checkbox" name="rememberPassword" /><span
-                >记住密码</span
-              >
-              <a class="forgetP" href="/forgetPassword" one-link-mark="yes"
-                >忘记密码</a
-              >
+          <el-form
+            class="form-content"
+            :model="loginParam"
+            status-icon
+            label-width="50px"
+          >
+            <div class="login-input">
+              <el-form-item>
+                <el-input
+                  v-model="loginParam.name"
+                  autocomplete="off"
+                  placeholder="请输入用户名"
+                ></el-input>
+              </el-form-item>
             </div>
-            <button type="button" onclick="login()">登 录</button>
-            <a class="register" href="/register" one-link-mark="yes">注册</a>
-          </form>
+            <div class="login-input">
+              <el-form-item>
+                <el-input
+                  type="password"
+                  v-model="loginParam.password"
+                  autocomplete="off"
+                  placeholder="请输入密码"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <el-form-item class="login-checkbox">
+              <el-checkbox v-model="storePass">记住密码</el-checkbox>
+            </el-form-item>
+          </el-form>
+          <div class="login-btn">
+            <el-button type="primary">登 录</el-button>
+          </div>
+          <div class="to-register">
+            <router-link to="/register" class="register-a">注册</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +57,13 @@ export default {
   name: "Login",
 
   data() {
-    return {};
+    return {
+      storePass: false,
+      loginParam: {
+        name: "",
+        password: "",
+      },
+    };
   },
 
   methods: {},
@@ -66,6 +93,8 @@ export default {
   left: 50%;
   top: 50%;
   margin: -442px 0 0 -845px;
+  /* 缩放 */
+  background-size: 50% 50%;
 }
 
 /* 平台标题 */
@@ -74,6 +103,9 @@ export default {
   height: 880px;
   float: left;
   text-align: center;
+  position: relative;
+  left: 220px;
+  top: 170px;
 }
 
 .logTitle {
@@ -81,7 +113,7 @@ export default {
 }
 
 .logTitle h1 {
-  font-size: 36px;
+  font-size: 30px;
   color: #17a1ff;
   font-weight: 500;
 }
@@ -94,111 +126,50 @@ export default {
 
 /* 登录信息 */
 .infoBox {
-  width: 730px;
-  height: 880px;
+  /* width: 730px; */
+  width: 390px;
+  /* height: 880px; */
+  height: 450px;
   float: right;
+  position: relative;
+  right: 450px;
+  top: 230px;
 }
 
 .logInfo {
-  padding: 170px 160px;
+  padding: 10px 10px;
 }
 
 .logInfo h1 {
-  font-size: 36px;
+  font-size: 30px;
   color: #17a1ff;
   font-weight: 500;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   width: 180px;
   border-bottom: 5px solid #17a1ff;
+  margin-left: 50px;
 }
 
 .logInfo h4 {
-  font-size: 22px;
+  font-size: 18px;
   color: #a0a0a0;
   font-weight: 500;
-  padding: 30px 0px;
-}
-
-/* 登录表单 */
-.logInfo input[type="text"],
-.logInfo input[type="password"] {
-  display: block;
-  width: 360px;
-  height: 60px;
-  line-height: 60px;
-  font-size: 18px;
-  border-radius: 60px;
-  margin: 20px 0px;
-  border: 1px solid #a0a0a0;
-}
-
-.logInfo span {
-  color: #17a1ff;
-  font-size: 20px;
-}
-/* 复选框自定义 */
-.logInfo input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 16px;
-  position: relative;
-  margin-top: -10px;
-  margin-right: 10px;
-}
-
-.logInfo input[type="checkbox"]::before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background: #fff;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #17a1ff;
-}
-
-.logInfo input[type="checkbox"]:checked::before {
-  content: "\2713";
-  background-color: #17a1ff;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  border: 1px solid #17a1ff;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.remember {
   padding: 20px 0px;
+  margin-left: 50px;
 }
 
-.forgetP {
-  font-size: 20px;
-  color: #17a1ff;
-  float: right;
+.login-btn {
+  /* width: 80px;
+  margin: 0 auto; */
+  text-align: center;
 }
-
-.logInfo button {
-  background-color: #17a1ff;
-  color: #fff;
-  width: 400px;
-  height: 60px;
-  border: none;
-  border-radius: 60px;
-  font-size: 22px;
+.to-register {
+  text-align: center;
   margin: 20px 0px;
 }
-
-.register {
-  display: block;
-  font-size: 20px;
+.to-register .register-a {
+  font-size: 16px;
   color: #17a1ff;
   text-align: center;
-  margin: 30px 0px;
 }
 </style>

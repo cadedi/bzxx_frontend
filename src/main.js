@@ -7,7 +7,8 @@ Vue.config.productionTip = false
 
 import {Table,TableColumn,Cascader,Select,Option,
         Input,Button,Pagination,Carousel,CarouselItem,
-        Radio,RadioGroup,RadioButton,Icon,Form,FormItem,Message} from 'element-ui';
+        Radio,RadioGroup,RadioButton,Icon,Form,FormItem,
+        Message,Checkbox,CheckboxGroup} from 'element-ui';
 Vue.component(Table.name, Table);
 Vue.component(TableColumn.name, TableColumn);
 Vue.component(Cascader.name, Cascader);
@@ -24,7 +25,10 @@ Vue.component(RadioButton.name,RadioButton);
 Vue.component(Icon.name,Icon);
 Vue.component(Form.name,Form);
 Vue.component(FormItem.name,FormItem);
-Vue.component(Message.name,Message);
+// Vue.component(Message.name,Message);
+Vue.component(Checkbox.name,Checkbox);
+Vue.component(CheckboxGroup.name,CheckboxGroup);
+
 
 
 Vue.prototype.$message = Message

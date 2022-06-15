@@ -1,7 +1,8 @@
-import { reqIcsCategory,reqNationalStandard } from "@/api";
+import { reqIcsCategory,reqNationalStandard,reqNationalDeatil } from "@/api";
 const state = {
   nationalStandardMsg:{},
-  icsCategoryMsg:{}
+  icsCategoryMsg:{},
+  infoDetailMsg:{}
 };
 const actions = {
   async getNationalStandard({commit},params={targetPage:1}){
@@ -13,7 +14,13 @@ const actions = {
   async getIcsCategory({commit}){
     let result = await reqIcsCategory();
     if(result.status == 200){
-      commit("GETICSCATEGORY",result.data)
+      commit("GETICSCATEGORY",result.data);
+    }
+  },
+  async getInfoDetail({commit},id){
+    let result = await reqNationalDeatil(id);
+    if(result.status == 200){
+      commit("GETINFODETAIL",result.data);
     }
   }
 };
@@ -22,7 +29,10 @@ const mutations = {
     state.nationalStandardMsg = nationalStandardMsg.extend;
   },
   GETICSCATEGORY(state,icsCategoryMsg){
-    state.icsCategoryMsg = icsCategoryMsg.extend
+    state.icsCategoryMsg = icsCategoryMsg.extend;
+  },
+  GETINFODETAIL(state,infoDetailMsg){
+    state.infoDetailMsg = infoDetailMsg.extend;
   }
 };
 const getters = {

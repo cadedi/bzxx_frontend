@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content-box">
     <div class="title">
       行业标准信息查询
       <p>Industry Standard Information Search</p>
@@ -21,16 +21,23 @@
         </el-input>
       </div>
       <div class="radio-selector it-selector clearFix">
-        
-        <el-radio-group class="it-group" v-model="searchParams.targetIndustryType" size="large">
+        <el-radio-group
+          class="it-group"
+          v-model="searchParams.targetIndustryType"
+          size="large"
+        >
           <span class="label it-label">行业领域:</span>
           <el-radio-button label="全部">全部</el-radio-button>
           <el-radio-button
             v-for="item of industryArea.slice(0, 7)"
             :key="item.id"
             :label="item.val"
-            >{{ item.name }}</el-radio-button>
-          <span @click="isExpand=!isExpand" class="iconfont icon-xiangxiajiantou expand-icon"></span>
+            >{{ item.name }}</el-radio-button
+          >
+          <span
+            @click="isExpand = !isExpand"
+            class="iconfont icon-xiangxiajiantou expand-icon"
+          ></span>
           <br />
           <div class="hide-selector" v-show="isExpand">
             <el-radio-button
@@ -138,7 +145,7 @@ export default {
         targetPage: 1,
       },
       pageSize: 15,
-      isExpand: false
+      isExpand: false,
     };
   },
 
@@ -211,7 +218,10 @@ export default {
 </script>
 
 <style scoped>
-
+.content-box {
+  width: 1200px;
+  margin: 0 auto;
+}
 .search_box {
   width: 1000px; /*850px */
   /* height: 210px; */
@@ -241,7 +251,7 @@ export default {
   text-align: left;
   padding-bottom: 18px;
   margin-top: 15px;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 .title p {
   font-size: 14px;

@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "Login",
 
@@ -67,10 +68,34 @@ export default {
   },
 
   methods: {
-    login(){
-      
+    async login(){
+      if(this.loginParam.name&&this.loginParam.password){
+        await this.$store.dispatch("userLogin",this.loginParam);
+        //console.log(this.$store.state.user.userInfo)
+        this.$message({
+          message: this.loginRes,
+          type: "success",
+        });
+        if(this.loginRes=="登陆成功"){
+          localStorage.setItem(
+            "userInfo",
+            JSON.stringify(this.$store.state.user.userInfo)
+          );
+          localStorage.setItem(
+            "token",
+            JSON.stringify(this.$store.state.user.token)
+          );
+          this.$router.push("/");
+        }
+      }
     }
   },
+  computed: {
+    ...mapState({
+      loginRes: (state) =>
+        state.user.loginRes,
+    }),
+  }
 };
 </script>
 

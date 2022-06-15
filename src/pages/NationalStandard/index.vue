@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFix">
+  <div class="clearFix content-box">
     <TypeNav />
     <div class="search_box">
       <h1 class="search_title">国家标准目录</h1>
@@ -39,11 +39,14 @@
     <div class="search-result">
       <el-table :data="nationalStandardInfo" stripe border style="width: 100%">
         <el-table-column
-          prop="standardNo"
           label="标准号"
           width="160"
           align="center"
         >
+          <template slot-scope="scope">
+            <a href="#" v-on:click.prevent="toDetail(scope.row)">{{ scope.row.standardNo }}</a>
+            <!-- <span>{{ scope.row.standardNo }}</span> -->
+          </template>
         </el-table-column>
         <el-table-column label="标准中文名称" width="380" align="center">
           <template slot-scope="scope">
@@ -130,6 +133,9 @@ export default {
     pageChange(currentPage) {
       this.searchParams.targetPage = currentPage;
       this.$router.push({ name: "nationalStandard", query: this.searchParams });
+    },
+    toDetail(info){
+      this.$router.push(`/nationalStandard/detail/${info.id}`);
     }
   },
   computed: {
@@ -158,6 +164,10 @@ export default {
 </script>
 
 <style scoped>
+.content-box {
+  width: 1200px;
+  margin: 0 auto;
+}
 .search_box {
   width: 750px; /*850px */
   height: 200px;

@@ -46,3 +46,15 @@ export const reqRegisterUser = (data) => requests({
   method:'POST',
   data
 })
+
+export const reqLogin = (data) => requests({
+  url:`login`,
+  method:'POST',
+  data
+})
+
+export const reqNationalDeatil = (id) => requests({
+  url:`national-standard/${id}`,
+  method:'GET'
+})
+

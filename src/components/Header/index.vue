@@ -11,7 +11,7 @@
       <div class="nav">
         <div class="nav_class">
           <ul>
-            <li :class="{nav_select:isCurrentItem('/')}">
+            <li :class="{nav_select:$route.path=='/'}">
               <!-- <a href="/" one-link-mark="yes">首页</a> -->
               <router-link to="/">首页</router-link>
             </li>
@@ -36,7 +36,12 @@
         <!-- 用户登录 -->
         <div class="personal">
           <!-- <a href="/login" one-link-mark="yes">用户登录</a> -->
-          <router-link to="/login">用户登录</router-link>
+          <router-link v-if="localStorage.getItem('token')!=null" to="/personal">
+            个人中心
+          </router-link>
+          <router-link v-else to="/login">
+            用户登录
+          </router-link>
         </div>
       </div>
     </div>
@@ -49,7 +54,7 @@ export default {
 
   data() {
     return {
-      
+      localStorage:localStorage
     };
   },
 
@@ -58,13 +63,13 @@ export default {
 
   methods: {
     isCurrentItem(itemName){
-      return itemName == this.$route.path
+      return this.$route.path.indexOf(itemName) != -1
     }
   },
   computed:{
     show(){
       return this.$route.path!='/login';
-    }
+    },
   }
 };
 </script>

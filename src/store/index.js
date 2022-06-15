@@ -7,12 +7,14 @@ import nationalStandard from "./nationalStandard";
 import industryStandard from "./industryStandard";
 import groupStandard from "./groupStandard";
 import enterpriseStandard from "./enterpriseStandard"
+import user from "./user"
 export default new Vuex.Store({
   modules: {
     home,
     nationalStandard,
     industryStandard,
     groupStandard,
-    enterpriseStandard
+    enterpriseStandard,
+    user
   },
 });

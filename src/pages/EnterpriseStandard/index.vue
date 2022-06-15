@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFix">
+  <div class="clearFix content-box">
     <div class="title">
       企业标准信息查询
       <p>Enterprise Standard Information Search</p>
@@ -10,7 +10,9 @@
         <span class="label">标准编号:</span>
         <el-input class="search-input" v-model="searchParams.targetStandardNo">
         </el-input>
-        <span class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标准名称:</span>
+        <span class="label"
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标准名称:</span
+        >
         <el-input
           class="search-input"
           v-model="searchParams.targetStandardName"
@@ -43,13 +45,18 @@
         </el-select>
       </div>
       <div class="search-btn">
-        <el-button type="primary" @click="search" >搜索</el-button>
+        <el-button type="primary" @click="search">搜索</el-button>
       </div>
     </div>
     <div class="search-result">
       <div class="up-table-title">最新数据:</div>
-      <hr class="up-table-hr"/>
-      <el-table :data="enterpriseStandardInfo" stripe border class="search-table">
+      <hr class="up-table-hr" />
+      <el-table
+        :data="enterpriseStandardInfo"
+        stripe
+        border
+        class="search-table"
+      >
         <el-table-column
           prop="enterpriseName"
           label="企业名称"
@@ -208,6 +215,10 @@ export default {
 </script>
 
 <style scoped>
+.content-box {
+  width: 1200px;
+  margin: 0 auto;
+}
 .title {
   font-size: 18px;
   color: #1aa6fe;

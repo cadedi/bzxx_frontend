@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFix">
+  <div class="clearFix content-box">
     <GroupTypeNav />
     <div class="title">
       团体标准信息查询
@@ -201,6 +201,10 @@ export default {
 </script>
 
 <style scoped>
+.content-box {
+  width: 1200px;
+  margin: 0 auto;
+}
 hr {
   /* display: block;
     unicode-bidi: isolate;

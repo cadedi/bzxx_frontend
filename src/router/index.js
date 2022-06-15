@@ -37,10 +37,10 @@ let router = new VueRouter({
   //配置路由
   routes,
   //滚动行为
-  scrollBehavior(to, from, savedPosition) {
-    //返回y=0代表滚动条在最上方
-    return { y: 0 };
-  },
+  // scrollBehavior(to, from, savedPosition) {
+  //   //返回y=0代表滚动条在最上方
+  //   return { y: 0 };
+  // },
 });
 
 export default router;
